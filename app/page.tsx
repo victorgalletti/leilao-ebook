@@ -125,7 +125,8 @@ export default function EbookLeilaoPage() {
         <div className="absolute inset-0 bg-primary/5" />
         <div className="container mx-auto relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div className="space-y-6 lg:space-y-8 animate-slide-in-up text-center lg:text-left">
+            {/* Coluna de Texto: agora order-1 (primeiro no celular) */}
+            <div className="space-y-6 lg:space-y-8 animate-slide-in-up text-center lg:text-left order-1 lg:order-1">
               <div className="space-y-4">
                 <Badge variant="secondary" className="w-fit mx-auto lg:mx-0">
                   <BookOpen className="mr-2 h-3 w-3" />
@@ -187,7 +188,7 @@ export default function EbookLeilaoPage() {
                 </div>
               </div>
             </div>
-            <div className="relative animate-fade-in-scale order-first lg:order-last">
+            <div className="relative animate-fade-in-scale order-2 lg:order-2">
               <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-primary/10 rounded-2xl blur-3xl" />
               <Image
                 src="images/ebook-cover.png"
@@ -280,7 +281,6 @@ export default function EbookLeilaoPage() {
           </div>
         </div>
       </section>
-
       {/* Vantagens Section */}
       <section id="vantagens" className="py-16 sm:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -338,7 +338,6 @@ export default function EbookLeilaoPage() {
           </div>
         </div>
       </section>
-
       {/* Autores Section */}
       <section id="autores" className="py-16 sm:py-24 bg-muted/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -358,7 +357,7 @@ export default function EbookLeilaoPage() {
           </div>
           <div className="relative max-w-4xl mx-auto animate-fade-in-scale">
             <Image
-              src="/autores.png" // **SUBSTITUIR** pela foto dos autores
+              src="/images/autores.png" // **SUBSTITUIR** pela foto dos autores
               alt="Autores do E-book: Junior Rocha e Wagner Mendes"
               width={800}
               height={500}
@@ -367,7 +366,6 @@ export default function EbookLeilaoPage() {
           </div>
         </div>
       </section>
-
       {/* CTA Section */}
       <section className="py-16 sm:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -397,7 +395,6 @@ export default function EbookLeilaoPage() {
           </Card>
         </div>
       </section>
-
       {/* Footer */}
       <footer id="contato" className="border-t bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
@@ -454,7 +451,6 @@ export default function EbookLeilaoPage() {
           </div>
         </div>
       </footer>
-
       {/* Botões Flutuantes */}
       <WhatsAppButton />
       <ScrollToTop />
