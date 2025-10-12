@@ -6,8 +6,10 @@ import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { ScrollToTop } from "@/components/scroll-to-top";
+import { TrustSection } from "@/components/trust-section";
 import { ReportSuspiciousSite } from "@/components/report-suspicious-site";
 import { FAQSection } from "@/components/faq-section";
+
 import {
   TermsDialog,
   PrivacyDialog,
@@ -16,6 +18,7 @@ import {
 import {
   Gavel,
   Shield,
+  ShieldCheck,
   BookOpen,
   CheckCircle,
   ArrowRight,
@@ -52,6 +55,12 @@ export default function EbookLeilaoPage() {
           {/* Navegação para Desktop */}
           <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
             <a
+              href="#confianca"
+              className="transition-colors hover:text-primary"
+            >
+              Verificações
+            </a>
+            <a
               href="#vantagens"
               className="transition-colors hover:text-primary"
             >
@@ -77,7 +86,7 @@ export default function EbookLeilaoPage() {
               size="sm"
               className="hidden sm:inline-flex"
             >
-              Baixar E-book
+              Lista Verificada
               <Download className="ml-2 h-4 w-4" />
             </Button>
             {/* Menu Mobile */}
@@ -98,6 +107,12 @@ export default function EbookLeilaoPage() {
                 id="mobile-menu"
                 className="hidden absolute right-4 top-16 w-48 bg-background border rounded-lg shadow-lg p-2 z-50"
               >
+                <a
+                  href="#confianca"
+                  className="flex items-center w-full px-3 py-2 rounded-md hover:bg-accent"
+                >
+                  <ShieldCheck className="mr-2 h-4 w-4" /> Verificações
+                </a>
                 <a
                   href="#vantagens"
                   className="flex items-center w-full px-3 py-2 rounded-md hover:bg-accent"
@@ -133,21 +148,23 @@ export default function EbookLeilaoPage() {
         <div className="absolute inset-0 bg-primary/5" />
         <div className="container mx-auto relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Coluna de Texto: agora order-1 (primeiro no celular) */}
+            {/* Coluna de Texto */}
             <div className="space-y-6 lg:space-y-8 animate-slide-in-up text-center lg:text-left order-1 lg:order-1">
               <div className="space-y-4">
                 <Badge variant="secondary" className="w-fit mx-auto lg:mx-0">
-                  <BookOpen className="mr-2 h-3 w-3" />
-                  Do Básico ao Avançado
+                  <Shield className="mr-2 h-3 w-3" />
+                  Sites Verificados
                 </Badge>
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-balance">
-                  Domine os{" "}
-                  <span className="text-primary">Leilões de Imóveis</span> e
-                  Alcance sua Independência Financeira
+                  Todos os sites de{" "}
+                  <span className="text-primary">
+                    leilões de imóveis confiáveis
+                  </span>{" "}
+                  em um só lugar
                 </h1>
                 <p className="text-lg sm:text-xl text-muted-foreground text-pretty max-w-[600px] mx-auto lg:mx-0">
-                  Tudo que você precisa para arrematar imóveis de leilões com
-                  segurança e lucratividade, mesmo começando do zero.
+                  Planilha verificada + checklist anti-golpe + passo a passo do
+                  TJ. Atualizada todo mês.
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -156,26 +173,35 @@ export default function EbookLeilaoPage() {
                   size="lg"
                   className="text-base"
                 >
-                  Quero o meu E-book agora
+                  Quero a Lista Verificada
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-                <Link href="#conteudo">
+                <Link href="#confianca">
                   <Button
                     variant="outline"
                     size="lg"
                     className="text-base bg-transparent"
                   >
-                    Ver Conteúdo
+                    Ver Verificações
                   </Button>
                 </Link>
               </div>
+
+              {/* Observação micro */}
+              <div className="text-center lg:text-left">
+                <p className="text-sm text-muted-foreground italic">
+                  Foco imobiliário. Não intermediamos lances.
+                </p>
+              </div>
+
+              {/* Stats atualizados */}
               <div className="flex items-center justify-center lg:justify-start gap-6 sm:gap-8 pt-4">
                 <div className="text-center">
                   <div className="text-xl sm:text-2xl font-bold text-primary">
-                    70% OFF
+                    50+
                   </div>
                   <div className="text-sm text-muted-foreground">
-                    Potencial de Desconto
+                    Sites Verificados
                   </div>
                 </div>
                 <div className="text-center">
@@ -183,33 +209,38 @@ export default function EbookLeilaoPage() {
                     100%
                   </div>
                   <div className="text-sm text-muted-foreground">
-                    Lucratividade
+                    Leiloeiros Oficiais
                   </div>
                 </div>
                 <div className="text-center">
                   <div className="text-xl sm:text-2xl font-bold text-primary">
-                    Passo a Passo
+                    Mensal
                   </div>
                   <div className="text-sm text-muted-foreground">
-                    Método Validado
+                    Atualização
                   </div>
                 </div>
               </div>
             </div>
+
+            {/* Coluna da Imagem */}
             <div className="relative animate-fade-in-scale order-2 lg:order-2">
               <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-primary/10 rounded-2xl blur-3xl" />
               <Image
-                src="images/ebook-cover.png"
-                alt="Capa do E-book Leilões Imobiliários do Básico ao Avançado"
+                src="/images/ebook-cover.png"
+                alt="Lista Verificada de Leilões de Imóveis Confiáveis"
                 width={500}
                 height={600}
-                className="relative rounded-2xl shadow-2xl w-full max-w-sm mx-auto h-auto"
+                className="relative z-10 w-full max-w-md mx-auto h-auto rounded-2xl shadow-2xl"
                 priority
               />
             </div>
           </div>
         </div>
       </section>
+
+      {/* Seção de Confiança */}
+      <TrustSection onDownloadClick={handleDownloadClick} />
 
       {/* Seção de Conteúdo do E-book */}
       <section id="conteudo" className="py-16 sm:py-24 bg-muted/30">
