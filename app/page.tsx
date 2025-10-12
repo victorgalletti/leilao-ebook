@@ -6,6 +6,12 @@ import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { ScrollToTop } from "@/components/scroll-to-top";
+import { ReportSuspiciousSite } from "@/components/report-suspicious-site";
+import {
+  TermsDialog,
+  PrivacyDialog,
+  RefundDialog,
+} from "@/components/legal-popups";
 import {
   Gavel,
   Shield,
@@ -21,6 +27,7 @@ import {
   Download,
   Menu,
   Mail,
+  MessageCircle,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -396,60 +403,152 @@ export default function EbookLeilaoPage() {
         </div>
       </section>
       {/* Footer */}
-      <footer id="contato" className="border-t bg-background">
+      <footer className="bg-muted/50 border-t">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            {/* Coluna 1 - Sobre */}
             <div className="space-y-4 text-center sm:text-left flex flex-col items-center sm:items-start">
               <div className="flex items-center space-x-2">
                 <Gavel className="h-7 w-7 text-primary" />
                 <span className="font-bold text-lg">Leilões de Imóveis</span>
               </div>
               <p className="text-sm text-muted-foreground text-pretty">
-                O guia definitivo para investir no mercado de leilões
-                imobiliários.
+                O guia definitivo para investir com segurança em leilões de
+                imóveis da Caixa e outros leilões confiáveis.
               </p>
+              <div className="text-sm text-muted-foreground space-y-1">
+                <p className="font-medium">CB Brazil Consultoria LTDA</p>
+                <p>CNPJ: 12.345.678/0001-90</p>
+              </div>
             </div>
+
+            {/* Coluna 2 - Links Úteis */}
             <div className="space-y-4 text-center sm:text-left">
-              <h4 className="font-semibold">Conteúdo</h4>
+              <h4 className="font-semibold">Links Úteis</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
                   <a href="#vantagens" className="hover:text-primary">
-                    Vantagens
+                    Vantagens dos Leilões
                   </a>
                 </li>
                 <li>
                   <a href="#conteudo" className="hover:text-primary">
-                    O que você vai aprender
+                    Conteúdo do E-book
                   </a>
                 </li>
                 <li>
                   <a href="#autores" className="hover:text-primary">
-                    Sobre os Autores
+                    Nossos Especialistas
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-primary">
+                    Imóveis da Caixa
                   </a>
                 </li>
               </ul>
             </div>
+
+            {/* Coluna 3 - Suporte */}
             <div className="space-y-4 text-center sm:text-left">
-              <h4 className="font-semibold">Suporte</h4>
+              <h4 className="font-semibold">Suporte e Serviços</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>Mentoria</li>
+                <li>Mentoria Personalizada</li>
                 <li>Assessoria de Arrematação</li>
-                <li>Grupo de Oportunidades</li>
+                <li>Análise de Documentação</li>
+                <li>Grupo VIP de Oportunidades</li>
               </ul>
             </div>
+
+            {/* Coluna 4 - Contato */}
             <div className="space-y-4 text-center sm:text-left">
               <h4 className="font-semibold">Contato</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>contato@exemplo.com.br</li>
-                <li>+55 (XX) XXXX-XXXX</li>
-                <li>Brasília, DF</li>
+                <li>
+                  <a
+                    href="https://wa.me/5561999999999"
+                    className="hover:text-primary inline-flex items-center gap-1"
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    (61) 99999-9999
+                  </a>
+                </li>
+                <li>contato@leiloesdeimoveis.com.br</li>
+                <li>
+                  <address className="not-italic">
+                    SCS Quadra 01, Bloco A<br />
+                    Ed. Corporate Center, Sala 801
+                    <br />
+                    Brasília - DF, 70.307-900
+                  </address>
+                </li>
               </ul>
             </div>
           </div>
-          <div className="border-t mt-6 sm:mt-8 pt-6 sm:pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2025 Leilões de Imóveis. Todos os direitos reservados.</p>
+
+          {/* Links Legais e Copyright */}
+          <div className="border-t mt-6 sm:mt-8 pt-6 sm:pt-8">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+              <div className="flex flex-wrap justify-center sm:justify-start gap-4 text-sm">
+                <TermsDialog />
+                <span className="text-muted-foreground">•</span>
+                <PrivacyDialog />
+                <span className="text-muted-foreground">•</span>
+                <RefundDialog />
+                <span className="text-muted-foreground">•</span>
+                <ReportSuspiciousSite />
+              </div>
+              <p className="text-sm text-muted-foreground text-center sm:text-right">
+                &copy; 2025 CB Brazil Consultoria. Todos os direitos reservados.
+              </p>
+            </div>
           </div>
         </div>
+
+        {/* Schema.org FAQ para SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "Os leilões de imóveis são confiáveis?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Sim, os leilões judiciais e extrajudiciais são regulamentados por lei e oferecem segurança jurídica. É importante verificar a idoneidade do leiloeiro e analisar toda a documentação do imóvel.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Como participar de leilões de imóveis da Caixa?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Para participar dos leilões da Caixa, você deve se cadastrar no site oficial, analisar osais disponíveis, fazer a caução exigida e dar seus lances online ou presencialmente conforme o al.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Qual o desconto em leilões de imóveis?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Os descontos em leilões podem variar de 30% a 70% do valor de mercado, dependendo se é primeira ou segunda praça, condições do imóvel e demanda pelo bem.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "É seguro comprar imóveis em leilão?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Sim, é seguro quando você segue os procedimentos corretos: analisa o al, verifica a documentação, visita o imóvel, calcula todos os custos e participa através de leiloeiros oficiais credenciados.",
+                  },
+                },
+              ],
+            }),
+          }}
+        />
       </footer>
       {/* Botões Flutuantes */}
       <WhatsAppButton />

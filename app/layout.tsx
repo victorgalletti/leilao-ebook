@@ -32,8 +32,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ebook Leilões de Imóveis: Do Básico ao Avançado",
     description:
-      "O guia definitivo para investir com segurança e lucratividade no mercado de leilões de imóveis. [cite: 15, 20, 214]",
-    url: "https://www.leilao.cbbrazil.com.br", // Substitua pela URL final do seu site
+      "O guia definitivo para investir com segurança e lucratividade no mercado de leilões de imóveis.",
+    url: "https://leilao.cbbrazil.com.br", // Substitua pela URL final do seu site
     siteName: "CB Leilão",
     images: [
       {
