@@ -7,8 +7,11 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { TrustSection } from "@/components/trust-section";
-import { ReportSuspiciousSite } from "@/components/report-suspicious-site";
+import ContentBenefitsSection from "@/components/content-benefits-section";
+import AdvantagesSection from "@/components/advantages-section";
+import TestimonialsSection from "@/components/testimonials-section";
 import { FAQSection } from "@/components/faq-section";
+import { ReportSuspiciousSite } from "@/components/report-suspicious-site";
 
 import {
   TermsDialog,
@@ -242,141 +245,19 @@ export default function EbookLeilaoPage() {
       {/* Seção de Confiança */}
       <TrustSection onDownloadClick={handleDownloadClick} />
 
-      {/* Seção de Conteúdo do E-book */}
-      <section id="conteudo" className="py-16 sm:py-24 bg-muted/30">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-4 mb-12 sm:mb-16 animate-slide-in-up">
-            <Badge variant="secondary" className="w-fit mx-auto">
-              <BookOpen className="mr-2 h-3 w-3" />O que você vai aprender
-            </Badge>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-balance">
-              Conteúdo Exclusivo do E-book
-            </h2>
-            <p className="text-lg sm:text-xl text-muted-foreground text-pretty max-w-[800px] mx-auto">
-              Um guia completo que aborda desde os conceitos fundamentais até as
-              estratégias avançadas de arrematação.
-            </p>
-          </div>
+      {/* Seção O que é + Benefícios */}
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {[
-              {
-                icon: Landmark,
-                title: "Leilões Judiciais vs. Extrajudiciais",
-                description:
-                  "Entenda a diferença crucial entre os tipos de leilão e saiba onde encontrar as melhores oportunidades.",
-              },
-              {
-                icon: Search,
-                title: "Como Encontrar os Melhores Leilões",
-                description:
-                  "Aprenda as técnicas e ferramentas para localizar imóveis na sua região com alto potencial de lucro.",
-              },
-              {
-                icon: FileText,
-                title: "Análise de Edital e Documentação",
-                description:
-                  "Domine a leitura de editais e a análise de matrículas para evitar riscos e fazer arrematações seguras.",
-              },
-              {
-                icon: Banknote,
-                title: "Cálculo de Lucratividade",
-                description:
-                  "Saiba como calcular todas as despesas e definir seu lance máximo para garantir um lucro de 30% a 40%.",
-              },
-              {
-                icon: Gavel,
-                title: "Segredos da Arrematação",
-                description:
-                  "Descubra as estratégias para dar lances de forma inteligente e aumentar suas chances de sucesso.",
-              },
-              {
-                icon: Users,
-                title: "Desocupação do Imóvel",
-                description:
-                  "Conheça os procedimentos para a desocupação amigável ou judicial do imóvel arrematado.",
-              },
-            ].map((item, index) => (
-              <Card
-                key={index}
-                className="group hover:shadow-lg transition-all duration-300 border-0 bg-card/50 backdrop-blur animate-fade-in-scale"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <CardContent className="p-4 sm:p-6">
-                  <div className="space-y-3 sm:space-y-4">
-                    <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                      <item.icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
-                    </div>
-                    <h3 className="text-lg sm:text-xl font-semibold">
-                      {item.title}
-                    </h3>
-                    <p className="text-muted-foreground text-pretty text-sm sm:text-base">
-                      {item.description}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ContentBenefitsSection onDownloadClick={handleDownloadClick} />
+
       {/* Vantagens Section */}
-      <section id="vantagens" className="py-16 sm:py-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div className="space-y-6 lg:space-y-8 animate-slide-in-up text-center lg:text-left">
-              <div className="space-y-4">
-                <Badge variant="secondary" className="w-fit mx-auto lg:mx-0">
-                  <Star className="mr-2 h-3 w-3" />
-                  Por que investir em leilões?
-                </Badge>
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-balance">
-                  Um Mercado de Oportunidades Únicas
-                </h2>
-                <p className="text-base sm:text-lg text-muted-foreground text-pretty max-w-[600px] mx-auto lg:mx-0">
-                  O mercado de leilões imobiliários é uma das formas mais
-                  seguras e lucrativas de investimento, acessível a todos que
-                  possuem o conhecimento correto.
-                </p>
-              </div>
+      <AdvantagesSection
+        onDownloadClick={handleDownloadClick}
+        onViewSampleClick={() => {
+          // Tracking event para "Ver amostra"
+          console.log("View sample clicked");
+        }}
+      />
 
-              <div className="space-y-3 sm:space-y-4">
-                {[
-                  "Imóveis com até 70% de desconto sobre o valor de mercado.",
-                  "Potencial de lucro de até 100% sobre o valor investido.",
-                  "Segurança de um investimento em um ativo sólido.",
-                  "Diversas formas de pagamento, incluindo parcelamento.",
-                ].map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center justify-center lg:justify-start gap-3 animate-fade-in-scale"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                    <span className="text-muted-foreground text-sm sm:text-base">
-                      {item}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="relative animate-fade-in-scale">
-              <div className="absolute inset-0 bg-gradient-to-l from-primary/20 to-primary/10 rounded-2xl blur-3xl" />
-              <Card className="relative border-0 bg-card/50 backdrop-blur">
-                <CardContent className="p-6 sm:p-8">
-                  <Image
-                    src="/images/graph.png"
-                    alt="Gráfico de valorização de imóveis"
-                    width={600}
-                    height={400}
-                    className="rounded-lg"
-                  />
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
       {/* Autores Section */}
       <section id="autores" className="py-16 sm:py-24 bg-muted/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -405,6 +286,10 @@ export default function EbookLeilaoPage() {
           </div>
         </div>
       </section>
+
+      {/* Seção de Depoimentos */}
+      <TestimonialsSection />
+
       {/* CTA Section */}
       <section className="py-16 sm:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -412,12 +297,12 @@ export default function EbookLeilaoPage() {
             <CardContent className="p-8 sm:p-12 text-center">
               <div className="space-y-4 sm:space-y-6 max-w-2xl mx-auto">
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-balance">
-                  Pronto para fazer seu primeiro arremate de sucesso?
+                  Pronto para ter acesso aos sites confiáveis de leilão?
                 </h2>
                 <p className="text-base sm:text-xl text-muted-foreground text-pretty">
-                  Adquira o conhecimento necessário para investir com segurança
-                  e transformar sua vida financeira através dos leilões de
-                  imóveis.
+                  Baixe agora a planilha completa, o checklist anti-golpe e o
+                  vídeo tutorial. Tudo que você precisa para começar com
+                  segurança nos leilões de imóveis.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
                   <Button
@@ -425,7 +310,7 @@ export default function EbookLeilaoPage() {
                     size="lg"
                     className="text-base"
                   >
-                    Sim, quero começar agora!
+                    Sim, quero baixar grátis!
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </div>
