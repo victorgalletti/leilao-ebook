@@ -7,6 +7,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { ReportSuspiciousSite } from "@/components/report-suspicious-site";
+import { FAQSection } from "@/components/faq-section";
 import {
   TermsDialog,
   PrivacyDialog,
@@ -368,7 +369,7 @@ export default function EbookLeilaoPage() {
               alt="Autores do E-book: Junior Rocha e Wagner Mendes"
               width={800}
               height={500}
-              className="w-full h-auto rounded-lg shadow-xl"
+              className="w-full h-auto rounded-lg"
             />
           </div>
         </div>
@@ -402,6 +403,10 @@ export default function EbookLeilaoPage() {
           </Card>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQSection />
+
       {/* Footer */}
       <footer className="bg-muted/50 border-t">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">

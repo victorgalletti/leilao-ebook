@@ -16,6 +16,14 @@ interface DialogContentProps {
   onClose?: () => void;
 }
 
+const DialogContext = React.createContext<{
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}>({
+  open: false,
+  onOpenChange: () => {},
+});
+
 export function Dialog({ open, onOpenChange, children }: DialogProps) {
   const [isOpen, setIsOpen] = React.useState(open || false);
 
@@ -25,13 +33,23 @@ export function Dialog({ open, onOpenChange, children }: DialogProps) {
     }
   }, [open]);
 
-  const contextValue = {
-    open: isOpen,
-    onOpenChange: (newOpen: boolean) => {
+  // Use useCallback to memoize the onOpenChange function
+  const handleOpenChange = React.useCallback(
+    (newOpen: boolean) => {
       setIsOpen(newOpen);
       onOpenChange?.(newOpen);
     },
-  };
+    [onOpenChange]
+  );
+
+  // Use useMemo to stabilize the context value object
+  const contextValue = React.useMemo(
+    () => ({
+      open: isOpen,
+      onOpenChange: handleOpenChange,
+    }),
+    [isOpen, handleOpenChange]
+  );
 
   return (
     <DialogContext.Provider value={contextValue}>
@@ -39,14 +57,6 @@ export function Dialog({ open, onOpenChange, children }: DialogProps) {
     </DialogContext.Provider>
   );
 }
-
-const DialogContext = React.createContext<{
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-}>({
-  open: false,
-  onOpenChange: () => {},
-});
 
 export function DialogTrigger({ children, asChild, ...props }: any) {
   const { onOpenChange } = React.useContext(DialogContext);

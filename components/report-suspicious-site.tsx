@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { AlertTriangle } from "lucide-react";
+import { AlertTriangle, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -15,15 +15,21 @@ import {
 export function ReportSuspiciousSite() {
   const [isSubmitted, setIsSubmitted] = React.useState(false);
 
+  // A função de resetar o estado é memoizada com useCallback para otimização
+  const resetForm = React.useCallback(() => {
+    setIsSubmitted(false);
+  }, []);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Aqui você implementaria a lógica de envio
+    // Lógica de envio do formulário aqui
     setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 5000);
+    // O formulário irá resetar quando o diálogo for fechado
   };
 
   return (
-    <Dialog>
+    // Adicionamos o onOpenChange para resetar o formulário quando o modal for fechado
+    <Dialog onOpenChange={(open) => !open && resetForm()}>
       <DialogTrigger asChild>
         <Button
           variant="link"
@@ -33,8 +39,8 @@ export function ReportSuspiciousSite() {
           Reportar site suspeito
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-md">
-        <DialogHeader>
+      <DialogContent className="w-full max-w-md mx-auto flex flex-col min-h-[480px]">
+        <DialogHeader className="text-center">
           <DialogTitle>Reportar Site Suspeito</DialogTitle>
           <DialogDescription>
             Ajude-nos a combater fraudes. Se você encontrou um site se passando
@@ -42,7 +48,10 @@ export function ReportSuspiciousSite() {
           </DialogDescription>
         </DialogHeader>
         {!isSubmitted ? (
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-4 pt-2 flex flex-col flex-grow"
+          >
             <div className="space-y-2">
               <label htmlFor="url" className="text-sm font-medium">
                 URL do site suspeito
@@ -52,7 +61,7 @@ export function ReportSuspiciousSite() {
                 type="url"
                 required
                 placeholder="https://exemplo.com"
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-transparent"
               />
             </div>
             <div className="space-y-2">
@@ -62,8 +71,8 @@ export function ReportSuspiciousSite() {
               <textarea
                 id="description"
                 rows={3}
-                placeholder="Descreva por que você acra que este site é suspeito..."
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+                placeholder="Descreva por que você acha que este site é suspeito..."
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary resize-none bg-transparent"
               />
             </div>
             <div className="space-y-2">
@@ -74,19 +83,25 @@ export function ReportSuspiciousSite() {
                 id="email"
                 type="email"
                 placeholder="seu@email.com"
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-transparent"
               />
             </div>
-            <Button type="submit" className="w-full">
+            {/* `mt-auto` empurra o botão para o final do formulário */}
+            <Button type="submit" className="w-full mt-auto">
               Enviar Reporte
             </Button>
           </form>
         ) : (
-          <div className="text-center py-8">
-            <div className="text-green-600 mb-2">✓</div>
-            <p className="font-medium">Obrigado pelo reporte!</p>
-            <p className="text-sm text-muted-foreground mt-1">
-              Vamos investigar o site reportado.
+          /*
+            - `flex-grow` faz esta div ocupar o espaço disponível.
+            - `flex flex-col justify-center items-center`: Centraliza a mensagem de sucesso.
+          */
+          <div className="flex-grow flex flex-col justify-center items-center text-center py-8">
+            <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
+            <p className="font-medium text-lg">Obrigado pelo reporte!</p>
+            <p className="text-sm text-muted-foreground mt-1 max-w-xs">
+              Nossa equipe vai analisar a denúncia. Agradecemos sua colaboração
+              para manter a comunidade segura.
             </p>
           </div>
         )}
